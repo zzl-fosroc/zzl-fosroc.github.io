@@ -6,37 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>FOSROC IQ Hub</title>
 
-  <link rel="icon" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" type="image/svg+xml">
+  <!-- ================================================== -->
+  <!-- ===== Web App & App Icon Meta Tags (UPDATED) ===== -->
+  <!-- ================================================== -->
 
-  <link rel="apple-touch-icon" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg">
-
-  <link rel="icon" sizes="192x192" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg">
-  <link rel="icon" sizes="512x512" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg">
-
+  <link rel="icon" type="image/png" href="/a/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/a/favicon.svg" />
+  <link rel="shortcut icon" href="/a/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/a/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="IQ HUB" />
+  <link rel="manifest" href="/a/site.webmanifest" />
+  
+  <!-- Theme Color (Android Browser Chrome) -->
   <meta name="theme-color" content="#E4002B">
 
-  <meta name="apple-mobile-web-app-title" content="Fosroc IQ Hub">
-  <meta name="application-name" content="Fosroc IQ Hub">
-
+  <!-- PWA / App-like Behavior -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
+  <!-- ================================================== -->
+  <!-- ===== End of Web App & App Icon Meta Tags ====== -->
+  <!-- ================================================== -->
+
+  <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Font 'Cairo' (CDN) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="antialiased">
 
+  <!--  
+      NEW APP CONTAINER
+      This wraps the entire application and enforces the max-width.
+    -->
   <div class="app-container">
 
+    <!--  
+          TOP BAR (One UI)
+          Holds the back button, consistently at the top.
+        -->
     <header class="app-top-bar">
       <button id="headerBackButton" class="back-button hidden">
+        <!-- Back Arrow SVG -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
           class="w-6 h-6 text-gray-700">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -44,6 +63,10 @@
       </button>
     </header>
 
+    <!--  
+          VIEWING AREA (One UI)
+          This content is managed by the showPage() function.
+        -->
     <div id="viewingArea" class="app-viewing-area">
       <img id="headerLogo" src="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" alt="Fosroc Logo"
         class="hidden">
@@ -51,9 +74,24 @@
       <p id="headerStep" class="hidden"></p>
     </div>
 
+    <!--  
+          INTERACTION AREA (One UI)
+          This holds all the swappable pages (.page-content).
+        -->
     <main id="pageContainer" class="app-interaction-area">
-      </main> <div id="bottomActionBar" class="app-bottom-bar hidden">
+      <!--  
+            All .page-content divs will be dynamically moved here from 
+            #pageStorage by the showPage() function.
+          -->
+    </main> <!-- End #pageContainer -->
 
+    <!--  
+          BOTTOM ACTION BAR (One UI)
+          All action buttons are moved here. JS will show/hide them.
+        -->
+    <div id="bottomActionBar" class="app-bottom-bar hidden">
+
+      <!-- Anchor Buttons -->
       <button id="continueToCalcButton" class="btn-primary action-button hidden"
         data-lang-key="continueToCalculator">Continue</button>
       <button type="button" id="anchorStartOver" class="btn-secondary action-button hidden"
@@ -61,8 +99,17 @@
 
     </div>
 
-  </div> <div id="pageStorage" class="hidden">
+  </div> <!-- End .app-container -->
+
+  <!--  
+      NEW: PAGE STORAGE
+      All page content divs start here, off-screen.
+      JS will move the active page into the #pageContainer.
+    -->
+  <div id="pageStorage" class="hidden">
+    <!-- ===== PAGE 0: LANGUAGE SELECTION ===== -->
     <div id="languagePage" class="page-content">
+      <!-- This page's title/logo is handled by showPage() -->
       <p class="text-gray-600 mt-2 text-center" data-lang-key="selectLanguage">Please Select Your Language</p>
       <div class="space-y-4 mt-6">
         <button id="selectLangEn" class="btn-language w-full" data-lang="en">English</button>
@@ -70,8 +117,10 @@
       </div>
     </div>
 
+    <!-- ===== PAGE 1: APPLICATION HUB ===== -->
     <div id="hubPage" class="page-content">
       <div class="space-y-4">
+        <!-- MODIFIED: Redesigned as Focus Blocks -->
         <button id="selectAnchorCalculator" class="btn-focus-block">
           <h2 data-lang-key="anchorCalculator">Anchoring Material Calculator</h2>
           <p data-lang-key="anchorDescription">Calculate resin for Lokfix E55 & E77.</p>
@@ -87,12 +136,18 @@
       </div>
     </div>
 
+    <!-- ===== PAGE 1.5: MATERIAL CATALOGUE (PLACEHOLDER) ===== -->
     <div id="cataloguePage" class="page-content">
       <div class="text-center">
         <p class="text-gray-500 mt-2" data-lang-key="featureInProgress">This feature is currently under development.</p>
       </div>
     </div>
 
+    <!-- ======================================== -->
+    <!-- ===== ANCHOR CALCULATOR PAGES START ===== -->
+    <!-- ======================================== -->
+
+    <!-- ===== ANCHOR PAGE 1: PRODUCT SELECTION ===== -->
     <div id="selectionPage" class="page-content">
       <div class="flex flex-col md:flex-row gap-6">
         <button type="button" id="selectE77" class="btn-product" data-product="E77">
@@ -110,8 +165,10 @@
       </div>
     </div>
 
+    <!-- ===== ANCHOR PAGE 2: REBAR SELECTION ===== -->
     <div id="rebarPage" class="page-content">
       <div id="rebarGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+        <!-- MODIFIED: Using btn-select class -->
         <button type="button" class="btn-select rebar-btn" data-value="8" data-product-e77="true">Ø8</button>
         <button type="button" class="btn-select rebar-btn" data-value="10" data-product-e77="true">Ø10</button>
         <button type="button" class="btn-select rebar-btn" data-value="12" data-product-e77="true">Ø12</button>
@@ -125,13 +182,16 @@
       </div>
     </div>
 
+    <!-- ===== ANCHOR PAGE 3: HOLE DIAMETER (E77) ===== -->
     <div id="holePage" class="page-content">
       <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="holeRebarDisplay"
           class="font-bold text-fosroc-red"></span></p>
       <div id="holeGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-        </div>
+        <!-- Hole diameter buttons will be dynamically inserted here -->
+      </div>
     </div>
 
+    <!-- ===== ANCHOR PAGE 4: EMBEDMENT DEPTH (E77) ===== -->
     <div id="depthPage" class="page-content">
       <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="depthRebarDisplay"
           class="font-bold text-fosroc-red"></span></p>
@@ -151,13 +211,16 @@
           <span data-lang-key="max">Max</span>: <span id="depthMaxLabel">1000</span> <span data-lang-key="mm">mm</span>
         </div>
       </div>
-      </div>
+      <!-- MOVED: Button moved to #bottomActionBar -->
+    </div>
 
+    <!-- ===== ANCHOR PAGE 5: CALCULATOR ===== -->
     <div id="calculatorPage" class="page-content">
       <form id="calculatorForm" class="space-y-6">
         <input type="hidden" id="rodDiameter" name="rodDiameter">
         <input type="hidden" id="selectedProduct" name="selectedProduct">
 
+        <!-- E55 Manual Inputs (for fallback, hidden by default) -->
         <div id="inputHoleDiameterDiv" class="form-input-group hidden">
           <label for="holeDiameter" class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
           <div class="form-input-wrapper">
@@ -179,6 +242,10 @@
 
       <div id="errorArea" class="error-message hidden"></div>
 
+      <!-- 
+        START: NEW REBAR INPUT SECTION 
+        This is the new slider/text input combo at the top of the page.
+      -->
       <div id="rebarCountSection"
         class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
         <label for="rebarCountValue" class="form-label text-center" data-lang-key="numberOfRebars">Number of
@@ -190,6 +257,10 @@
             class="form-input w-20 text-center text-lg font-bold text-fosroc-red" value="1" min="1">
         </div>
       </div>
+      <!-- END: NEW REBAR INPUT SECTION -->
+
+
+      <!-- NEW: Results Section (Top) -->
       <div id="totalResultArea" class="mt-0 pt-0 space-y-4 hidden">
         <h2 id="resultsTitle" class="criteria-section-title" data-lang-key="results">Results</h2>
         
@@ -201,13 +272,16 @@
         <div id="totalCartridgeInfo" class="mt-4 text-center">
           <p class="result-label" data-lang-key="totalCartridgesNeeded">Total Cartridges Needed:</p>
           <div id="cartridgeResultValue" class="text-2xl font-bold text-fosroc-red mt-1">
-            </div>
+            <!-- Value will be injected here by JS -->
+          </div>
         </div>
       </div>
 
+      <!-- NEW: Criteria Section (Bottom) -->
       <div id="criteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4 hidden">
         <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
 
+        <!-- E77/E55 Static Inputs -->
         <div id="displayE77Inputs" class="space-y-4">
           <div>
             <label class="form-label" data-lang-key="rebar">Rebar</label>
@@ -223,6 +297,7 @@
           </div>
         </div>
 
+        <!-- Per Anchor Results -->
         <div id="resultArea" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
           <div class="result-block">
             <p class="result-label" data-lang-key="netVolumePerAnchor">Net Volume (per anchor):</p>
@@ -236,6 +311,7 @@
           </div>
         </div>
 
+        <!-- ADDED: Wastage Section -->
         <div id="wastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
           <button id="toggleWastageButton" type="button" class="btn-secondary w-full"
             data-lang-key="customizeWastage">Customize Wastage</button>
@@ -249,13 +325,20 @@
               <div class="form-input-wrapper w-24">
                 <input type="text" inputmode="numeric" id="wastageValue" name="wastageValue"
                   class="form-input w-full text-lg font-bold text-fosroc-red" value="45" min="10">
-                </div>
+                <!-- REMOVED: Span with "%" symbol -->
+              </div>
             </div>
           </div>
         </div>
-        </div>
+        <!-- END: Wastage Section -->
 
-    </div> </div> <script src="script.js" defer></script>
+      </div>
+
+    </div> <!-- End Calculator Page -->
+  </div> <!-- End #pageStorage -->
+
+  <!-- External JavaScript -->
+  <script src="script.js" defer></script>
 </body>
 
 </html>
