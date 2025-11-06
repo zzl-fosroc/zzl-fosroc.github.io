@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>FOSROC IQ Hub</title>
+
+  <link rel="icon" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" type="image/svg+xml">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased">
+
+  <div class="app-container">
+
+    <header class="app-top-bar">
+      <button id="headerBackButton" class="back-button hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          class="w-6 h-6 text-gray-700">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+    </header>
+
+    <div id="viewingArea" class="app-viewing-area">
+      <img id="headerLogo" src="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" alt="Fosroc Logo"
+        class="hidden">
+      <h1 id="headerTitle" class="hidden"></h1>
+      <p id="headerStep" class="hidden"></p>
+    </div>
+
+    <main id="pageContainer" class="app-interaction-area">
+      </main> <div id="bottomActionBar" class="app-bottom-bar hidden">
+
+      <button id="continueToCalcButton" class="btn-primary action-button hidden"
+        data-lang-key="continueToCalculator">Continue</button>
+      <button type="button" id="anchorStartOver" class="btn-secondary action-button hidden"
+        data-lang-key="startOver">Start Over</button>
+
+    </div>
+
+  </div> <div id="pageStorage" class="hidden">
+    <div id="languagePage" class="page-content">
+      <p class="text-gray-600 mt-2 text-center" data-lang-key="selectLanguage">Please Select Your Language</p>
+      <div class="space-y-4 mt-6">
+        <button id="selectLangEn" class="btn-language w-full" data-lang="en">English</button>
+        <button id="selectLangAr" class="btn-language w-full" data-lang="ar">العربية</button>
+      </div>
+    </div>
+
+    <div id="hubPage" class="page-content">
+      <div class="space-y-4">
+        <button id="selectAnchorCalculator" class="btn-focus-block">
+          <h2 data-lang-key="anchorCalculator">Anchoring Material Calculator</h2>
+          <p data-lang-key="anchorDescription">Calculate resin for Lokfix E55 & E77.</p>
+        </button>
+        <button id="selectSealantCalculator" class="btn-focus-block">
+          <h2 data-lang-key="sealantCalculator">Sealant Volume Calculator</h2>
+          <p data-lang-key="sealantDescription">Estimate joint sealant requirements.</p>
+        </button>
+        <button id="selectCatalogue" class="btn-focus-block">
+          <h2 data-lang-key="materialCatalogue">Material Catalogue</h2>
+          <p data-lang-key="comingSoon">Coming Soon</p>
+        </button>
+      </div>
+    </div>
+
+    <div id="cataloguePage" class="page-content">
+      <div class="text-center">
+        <p class="text-gray-500 mt-2" data-lang-key="featureInProgress">This feature is currently under development.</p>
+      </div>
+    </div>
+
+    <div id="selectionPage" class="page-content">
+      <div class="flex flex-col md:flex-row gap-6">
+        <button type="button" id="selectE77" class="btn-product" data-product="E77">
+          <img src="https://www.resapol.com/wp-content/uploads/2022/09/Lokfix-E77-Product-Image.png" alt="Lokfix E77"
+            onerror="this.src='https://placehold.co/200x200/E4002B/white?text=Lokfix+E77'">
+          <h2 data-lang-key="structural">Structural</h2>
+          <p>Lokfix E77</p>
+        </button>
+        <button type="button" id="selectE55" class="btn-product" data-product="E55">
+          <img src="https://www.buildershoponline.co.uk/image/data/fosroc/fosroc-lokfix-e55s.png" alt="Lokfix E55"
+            onerror="this.src='https://placehold.co/200x200/E4002B/white?text=Lokfix+E55'">
+          <h2 data-lang-key="nonStructural">Non-Structural</h2>
+          <p>Lokfix E55</p>
+        </button>
+      </div>
+    </div>
+
+    <div id="rebarPage" class="page-content">
+      <div id="rebarGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+        <button type="button" class="btn-select rebar-btn" data-value="8" data-product-e77="true">Ø8</button>
+        <button type="button" class="btn-select rebar-btn" data-value="10" data-product-e77="true">Ø10</button>
+        <button type="button" class="btn-select rebar-btn" data-value="12" data-product-e77="true">Ø12</button>
+        <button type="button" class="btn-select rebar-btn" data-value="14" data-product-e77="true">Ø14</button>
+        <button type="button" class="btn-select rebar-btn" data-value="16" data-product-e77="true">Ø16</button>
+        <button type="button" class="btn-select rebar-btn" data-value="20" data-product-e77="true">Ø20</button>
+        <button type="button" class="btn-select rebar-btn" data-value="24" data-product-e77="true">Ø24</button>
+        <button type="button" class="btn-select rebar-btn" data-value="25" data-product-e77="true">Ø25</button>
+        <button type="button" class="btn-select rebar-btn" data-value="28" data-product-e77="true">Ø28</button>
+        <button type="button" class="btn-select rebar-btn" data-value="32" data-product-e77="true">Ø32</button>
+      </div>
+    </div>
+
+    <div id="holePage" class="page-content">
+      <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="holeRebarDisplay"
+          class="font-bold text-fosroc-red"></span></p>
+      <div id="holeGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+        </div>
+    </div>
+
+    <div id="depthPage" class="page-content">
+      <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="depthRebarDisplay"
+          class="font-bold text-fosroc-red"></span></p>
+      <div class="space-y-4">
+        <div class="text-center">
+          <label for="depthValue" class="form-label" data-lang-key="selectedDepth">Selected Depth:</label>
+          <div class="flex justify-center items-center space-x-2">
+            <input type="text" inputmode="decimal" id="depthValue" name="depthValue"
+              class="form-input w-32 text-center text-lg font-bold text-fosroc-red">
+            <span class="text-lg font-bold text-gray-700" data-lang-key="mm">mm</span>
+          </div>
+        </div>
+        <input type="range" id="depthSlider" name="depthSlider" min="0" max="1000" value="100"
+          aria-label="Embedment Depth Slider">
+        <div class="text-center text-sm text-gray-500">
+          <span data-lang-key="min">Min</span>: <span id="depthMinLabel">0</span> <span data-lang-key="mm">mm</span> |
+          <span data-lang-key="max">Max</span>: <span id="depthMaxLabel">1000</span> <span data-lang-key="mm">mm</span>
+        </div>
+      </div>
+      </div>
+
+    <div id="calculatorPage" class="page-content">
+      <form id="calculatorForm" class="space-y-6">
+        <input type="hidden" id="rodDiameter" name="rodDiameter">
+        <input type="hidden" id="selectedProduct" name="selectedProduct">
+
+        <div id="inputHoleDiameterDiv" class="form-input-group hidden">
+          <label for="holeDiameter" class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
+          <div class="form-input-wrapper">
+            <input type="number" id="holeDiameter" name="holeDiameter" class="form-input"
+              data-lang-placeholder="holeDiameterPlaceholder" placeholder="e.g., 16" required>
+            <span class="form-input-adornment" data-lang-key="mm">mm</span>
+          </div>
+        </div>
+        <div id="inputHoleDepthDiv" class="form-input-group hidden">
+          <label for="holeDepth" class="form-label" data-lang-key="embedmentDepthHoleDepth">Embedment Depth / Hole
+            Depth</label>
+          <div class="form-input-wrapper">
+            <input type="number" id="holeDepth" name="holeDepth" class="form-input"
+              data-lang-placeholder="holeDepthPlaceholder" placeholder="e.g., 125" required>
+            <span class="form-input-adornment" data-lang-key="mm">mm</span>
+          </div>
+        </div>
+      </form>
+
+      <div id="errorArea" class="error-message hidden"></div>
+
+      <div id="rebarCountSection"
+        class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
+        <label for="rebarCountValue" class="form-label text-center" data-lang-key="numberOfRebars">Number of
+          Rebars</label>
+        <div class="flex items-center gap-4">
+          <input type="range" id="rebarCountSlider" name="rebarCountSlider" min="1" max="500" value="1"
+            class="flex-1" aria-label="Number of Rebars Slider">
+          <input type="text" inputmode="numeric" id="rebarCountValue" name="rebarCountValue"
+            class="form-input w-20 text-center text-lg font-bold text-fosroc-red" value="1" min="1">
+        </div>
+      </div>
+      <div id="totalResultArea" class="mt-0 pt-0 space-y-4 hidden">
+        <h2 id="resultsTitle" class="criteria-section-title" data-lang-key="results">Results</h2>
+        
+        <div class="result-block">
+          <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
+          <p id="totalVolumeDisplay" class="result-value">0.00 mL</p>
+        </div>
+
+        <div id="totalCartridgeInfo" class="mt-4 text-center">
+          <p class="result-label" data-lang-key="totalCartridgesNeeded">Total Cartridges Needed:</p>
+          <div id="cartridgeResultValue" class="text-2xl font-bold text-fosroc-red mt-1">
+            </div>
+        </div>
+      </div>
+
+      <div id="criteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4 hidden">
+        <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
+
+        <div id="displayE77Inputs" class="space-y-4">
+          <div>
+            <label class="form-label" data-lang-key="rebar">Rebar</label>
+            <p id="selectedRebarDisplay" class="form-display">Ø12</p>
+          </div>
+          <div>
+            <label class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
+            <p id="displayHoleDiameter" class="form-display">0 mm</p>
+          </div>
+          <div>
+            <label class="form-label" data-lang-key="embedmentDepth">Embedment Depth</label>
+            <p id="displayHoleDepth" class="form-display">0 mm</p>
+          </div>
+        </div>
+
+        <div id="resultArea" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+          <div class="result-block">
+            <p class="result-label" data-lang-key="netVolumePerAnchor">Net Volume (per anchor):</p>
+            <p id="netVolumeDisplay" class="result-value-small">0.00 mL</p>
+          </div>
+          <div class="result-block">
+            <p class="result-label" data-lang-key="volumeRequiredPerAnchor">Total Volume (per anchor):</p>
+            <p id="resultVolume" class="result-value">0.00 mL</p>
+            <p id="fillDepthNote" class="result-note" data-lang-key="fillDepthNote">(Calculated at 2/3 fill depth)</p>
+            <p id="resultWastage" class="result-note">(Includes 35% wastage)</p>
+          </div>
+        </div>
+
+        <div id="wastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+          <button id="toggleWastageButton" type="button" class="btn-secondary w-full"
+            data-lang-key="customizeWastage">Customize Wastage</button>
+
+          <div id="wastageCustomizationSection" class="form-input-group pt-4 hidden">
+            <label for="wastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage
+              Factor</label>
+            <div class="flex items-center gap-4">
+              <input type="range" id="wastageSlider" name="wastageSlider" min="10" max="100" value="35"
+                class="flex-1" aria-label="Wastage Factor Slider" style="margin-top: 0;">
+              <div class="form-input-wrapper w-24">
+                <input type="text" inputmode="numeric" id="wastageValue" name="wastageValue"
+                  class="form-input w-full text-lg font-bold text-fosroc-red" value="35" min="10">
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+    </div> </div> <script src="script.js" defer></script>
+</body>
+
+</html>
