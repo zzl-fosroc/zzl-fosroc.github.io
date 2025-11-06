@@ -8,6 +8,20 @@
 
   <link rel="icon" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" type="image/svg+xml">
 
+  <link rel="apple-touch-icon" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg">
+
+  <link rel="icon" sizes="192x192" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg">
+  <link rel="icon" sizes="512x512" href="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg">
+
+  <meta name="theme-color" content="#E4002B">
+
+  <meta name="apple-mobile-web-app-title" content="Fosroc IQ Hub">
+  <meta name="application-name" content="Fosroc IQ Hub">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -218,7 +232,7 @@
             <p class="result-label" data-lang-key="volumeRequiredPerAnchor">Total Volume (per anchor):</p>
             <p id="resultVolume" class="result-value">0.00 mL</p>
             <p id="fillDepthNote" class="result-note" data-lang-key="fillDepthNote">(Calculated at 2/3 fill depth)</p>
-            <p id="resultWastage" class="result-note">(Includes 35% wastage)</p>
+            <p id="resultWastage" class="result-note">(Includes 45% wastage)</p>
           </div>
         </div>
 
@@ -230,11 +244,11 @@
             <label for="wastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage
               Factor</label>
             <div class="flex items-center gap-4">
-              <input type="range" id="wastageSlider" name="wastageSlider" min="10" max="100" value="35"
+              <input type="range" id="wastageSlider" name="wastageSlider" min="10" max="100" value="45"
                 class="flex-1" aria-label="Wastage Factor Slider" style="margin-top: 0;">
               <div class="form-input-wrapper w-24">
                 <input type="text" inputmode="numeric" id="wastageValue" name="wastageValue"
-                  class="form-input w-full text-lg font-bold text-fosroc-red" value="35" min="10">
+                  class="form-input w-full text-lg font-bold text-fosroc-red" value="45" min="10">
                 </div>
             </div>
           </div>
