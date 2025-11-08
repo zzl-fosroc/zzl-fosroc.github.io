@@ -531,18 +531,10 @@ input[type=range]::-webkit-slider-thumb:active {
   margin-top: 0.25rem;
 }
 
+/* Sealant Package Result (specific) */
 #sealantPackagesResultValue {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
   text-align: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-#sealantPackagesResultValue>div {
-  flex-basis: 120px;
+  margin-top: 0.25rem;
 }
 
 #sealantPackagesResultValue b {
@@ -550,12 +542,6 @@ input[type=range]::-webkit-slider-thumb:active {
   /* text-3xl */
   font-weight: 700;
   color: var(--fosroc-red);
-}
-
-#sealantPackagesResultValue div div {
-  font-size: 0.875rem;
-  /* text-sm */
-  color: var(--text-secondary);
 }
 
 #cartridgeResultValue b {
@@ -584,13 +570,67 @@ input[type=range]::-webkit-slider-thumb:active {
 }
 
 /* MODIFIED: Wastage Input Alignment */
-#wastageValue {
+#wastageValue,
+#sealantWastageValue {
   text-align: center;
-  /* padding-right: 2.5rem; */ /* REMOVED */
+  /* padding-right: 2.5rem; */
+  /* REMOVED */
 }
 
-[dir="rtl"] #wastageValue {
+[dir="rtl"] #wastageValue,
+[dir="rtl"] #sealantWastageValue {
   text-align: right;
-  /* padding-right: 1rem; */ /* REMOVED */
-  /* padding-left: 2.5rem; */ /* REMOVED */
+  /* padding-right: 1rem; */
+  /* REMOVED */
+  /* padding-left: 2.5rem; */
+  /* REMOVED */
+}
+
+/* Helper text for ASTM guidance */
+.form-helper-text {
+  font-size: 0.875rem;
+  /* text-sm */
+  color: var(--text-secondary);
+  padding: 0.75rem 1rem;
+  background-color: #F9FAFB;
+  /* gray-50 */
+  border-radius: var(--input-radius);
+  border: 1px solid #F3F4F6;
+  /* gray-100 */
+  line-height: 1.4;
+}
+
+.form-helper-text h4 {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* NEW: Toggle button for linking sealant inputs */
+.btn-toggle-link {
+  padding: 0.5rem;
+  /* p-2 */
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  /* rounded-full */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F3F4F6;
+  /* gray-100 */
+  color: #6B7280;
+  /* gray-500 */
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-toggle-link:hover {
+  background-color: #E5E7EB;
+  /* gray-200 */
+}
+
+.btn-toggle-link.linked {
+  background-color: #FEE2E2;
+  /* red-100 */
+  color: var(--fosroc-red);
+  /* red-600 */
 }

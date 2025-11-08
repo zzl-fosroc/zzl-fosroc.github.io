@@ -6,56 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>FOSROC IQ Hub</title>
 
-  <!-- ================================================== -->
-  <!-- ===== Web App & App Icon Meta Tags (UPDATED) ===== -->
-  <!-- ================================================== -->
-
   <link rel="icon" type="image/png" href="/a/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/a/favicon.svg" />
   <link rel="shortcut icon" href="/a/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/a/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="IQ HUB" />
   <link rel="manifest" href="/a/site.webmanifest" />
-  
-  <!-- Theme Color (Android Browser Chrome) -->
+
   <meta name="theme-color" content="#E4002B">
 
-  <!-- PWA / App-like Behavior -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- ================================================== -->
-  <!-- ===== End of Web App & App Icon Meta Tags ====== -->
-  <!-- ================================================== -->
-
-  <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Font 'Cairo' (CDN) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body class="antialiased">
 
-  <!--  
-      NEW APP CONTAINER
-      This wraps the entire application and enforces the max-width.
-    -->
   <div class="app-container">
 
-    <!--  
-          TOP BAR (One UI)
-          Holds the back button, consistently at the top.
-        -->
     <header class="app-top-bar">
       <button id="headerBackButton" class="back-button hidden">
-        <!-- Back Arrow SVG -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
           class="w-6 h-6 text-gray-700">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -63,10 +42,6 @@
       </button>
     </header>
 
-    <!--  
-          VIEWING AREA (One UI)
-          This content is managed by the showPage() function.
-        -->
     <div id="viewingArea" class="app-viewing-area">
       <img id="headerLogo" src="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" alt="Fosroc Logo"
         class="hidden">
@@ -74,42 +49,29 @@
       <p id="headerStep" class="hidden"></p>
     </div>
 
-    <!--  
-          INTERACTION AREA (One UI)
-          This holds all the swappable pages (.page-content).
-        -->
     <main id="pageContainer" class="app-interaction-area">
-      <!--  
-            All .page-content divs will be dynamically moved here from 
-            #pageStorage by the showPage() function.
-          -->
-    </main> <!-- End #pageContainer -->
+      </main>
 
-    <!--  
-          BOTTOM ACTION BAR (One UI)
-          All action buttons are moved here. JS will show/hide them.
-        -->
     <div id="bottomActionBar" class="app-bottom-bar hidden">
 
-      <!-- Anchor Buttons -->
       <button id="continueToCalcButton" class="btn-primary action-button hidden"
         data-lang-key="continueToCalculator">Continue</button>
       <button type="button" id="anchorStartOver" class="btn-secondary action-button hidden"
         data-lang-key="startOver">Start Over</button>
 
+      <button type="button" id="sealantContinueToDims" class="btn-primary action-button hidden"
+        data-lang-key="continueToCalculator">Continue</button>
+      <button type="button" id="sealantCalculateButton" class="btn-primary action-button hidden"
+        data-lang-key="sealantCalculate">Calculate</button>
+      <button type="button" id="sealantStartOver" class="btn-secondary action-button hidden"
+        data-lang-key="sealantStartOver">Start Over</button>
+
     </div>
 
-  </div> <!-- End .app-container -->
+  </div>
 
-  <!--  
-      NEW: PAGE STORAGE
-      All page content divs start here, off-screen.
-      JS will move the active page into the #pageContainer.
-    -->
   <div id="pageStorage" class="hidden">
-    <!-- ===== PAGE 0: LANGUAGE SELECTION ===== -->
     <div id="languagePage" class="page-content">
-      <!-- This page's title/logo is handled by showPage() -->
       <p class="text-gray-600 mt-2 text-center" data-lang-key="selectLanguage">Please Select Your Language</p>
       <div class="space-y-4 mt-6">
         <button id="selectLangEn" class="btn-language w-full" data-lang="en">English</button>
@@ -117,10 +79,8 @@
       </div>
     </div>
 
-    <!-- ===== PAGE 1: APPLICATION HUB ===== -->
     <div id="hubPage" class="page-content">
       <div class="space-y-4">
-        <!-- MODIFIED: Redesigned as Focus Blocks -->
         <button id="selectAnchorCalculator" class="btn-focus-block">
           <h2 data-lang-key="anchorCalculator">Anchoring Material Calculator</h2>
           <p data-lang-key="anchorDescription">Calculate resin for Lokfix E55 & E77.</p>
@@ -136,18 +96,12 @@
       </div>
     </div>
 
-    <!-- ===== PAGE 1.5: MATERIAL CATALOGUE (PLACEHOLDER) ===== -->
     <div id="cataloguePage" class="page-content">
       <div class="text-center">
         <p class="text-gray-500 mt-2" data-lang-key="featureInProgress">This feature is currently under development.</p>
       </div>
     </div>
 
-    <!-- ======================================== -->
-    <!-- ===== ANCHOR CALCULATOR PAGES START ===== -->
-    <!-- ======================================== -->
-
-    <!-- ===== ANCHOR PAGE 1: PRODUCT SELECTION ===== -->
     <div id="selectionPage" class="page-content">
       <div class="flex flex-col md:flex-row gap-6">
         <button type="button" id="selectE77" class="btn-product" data-product="E77">
@@ -165,10 +119,8 @@
       </div>
     </div>
 
-    <!-- ===== ANCHOR PAGE 2: REBAR SELECTION ===== -->
     <div id="rebarPage" class="page-content">
       <div id="rebarGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-        <!-- MODIFIED: Using btn-select class -->
         <button type="button" class="btn-select rebar-btn" data-value="8" data-product-e77="true">Ø8</button>
         <button type="button" class="btn-select rebar-btn" data-value="10" data-product-e77="true">Ø10</button>
         <button type="button" class="btn-select rebar-btn" data-value="12" data-product-e77="true">Ø12</button>
@@ -182,16 +134,13 @@
       </div>
     </div>
 
-    <!-- ===== ANCHOR PAGE 3: HOLE DIAMETER (E77) ===== -->
     <div id="holePage" class="page-content">
       <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="holeRebarDisplay"
           class="font-bold text-fosroc-red"></span></p>
       <div id="holeGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-        <!-- Hole diameter buttons will be dynamically inserted here -->
       </div>
     </div>
 
-    <!-- ===== ANCHOR PAGE 4: EMBEDMENT DEPTH (E77) ===== -->
     <div id="depthPage" class="page-content">
       <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="depthRebarDisplay"
           class="font-bold text-fosroc-red"></span></p>
@@ -211,16 +160,13 @@
           <span data-lang-key="max">Max</span>: <span id="depthMaxLabel">1000</span> <span data-lang-key="mm">mm</span>
         </div>
       </div>
-      <!-- MOVED: Button moved to #bottomActionBar -->
     </div>
 
-    <!-- ===== ANCHOR PAGE 5: CALCULATOR ===== -->
     <div id="calculatorPage" class="page-content">
       <form id="calculatorForm" class="space-y-6">
         <input type="hidden" id="rodDiameter" name="rodDiameter">
         <input type="hidden" id="selectedProduct" name="selectedProduct">
 
-        <!-- E55 Manual Inputs (for fallback, hidden by default) -->
         <div id="inputHoleDiameterDiv" class="form-input-group hidden">
           <label for="holeDiameter" class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
           <div class="form-input-wrapper">
@@ -242,28 +188,19 @@
 
       <div id="errorArea" class="error-message hidden"></div>
 
-      <!-- 
-        START: NEW REBAR INPUT SECTION 
-        This is the new slider/text input combo at the top of the page.
-      -->
-      <div id="rebarCountSection"
-        class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
+      <div id="rebarCountSection" class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
         <label for="rebarCountValue" class="form-label text-center" data-lang-key="numberOfRebars">Number of
           Rebars</label>
         <div class="flex items-center gap-4">
-          <input type="range" id="rebarCountSlider" name="rebarCountSlider" min="1" max="500" value="1"
-            class="flex-1" aria-label="Number of Rebars Slider">
+          <input type="range" id="rebarCountSlider" name="rebarCountSlider" min="1" max="500" value="1" class="flex-1"
+            aria-label="Number of Rebars Slider">
           <input type="text" inputmode="numeric" id="rebarCountValue" name="rebarCountValue"
             class="form-input w-20 text-center text-lg font-bold text-fosroc-red" value="1" min="1">
         </div>
       </div>
-      <!-- END: NEW REBAR INPUT SECTION -->
-
-
-      <!-- NEW: Results Section (Top) -->
       <div id="totalResultArea" class="mt-0 pt-0 space-y-4 hidden">
         <h2 id="resultsTitle" class="criteria-section-title" data-lang-key="results">Results</h2>
-        
+
         <div class="result-block">
           <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
           <p id="totalVolumeDisplay" class="result-value">0.00 mL</p>
@@ -272,16 +209,13 @@
         <div id="totalCartridgeInfo" class="mt-4 text-center">
           <p class="result-label" data-lang-key="totalCartridgesNeeded">Total Cartridges Needed:</p>
           <div id="cartridgeResultValue" class="text-2xl font-bold text-fosroc-red mt-1">
-            <!-- Value will be injected here by JS -->
           </div>
         </div>
       </div>
 
-      <!-- NEW: Criteria Section (Bottom) -->
       <div id="criteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4 hidden">
         <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
 
-        <!-- E77/E55 Static Inputs -->
         <div id="displayE77Inputs" class="space-y-4">
           <div>
             <label class="form-label" data-lang-key="rebar">Rebar</label>
@@ -297,7 +231,6 @@
           </div>
         </div>
 
-        <!-- Per Anchor Results -->
         <div id="resultArea" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
           <div class="result-block">
             <p class="result-label" data-lang-key="netVolumePerAnchor">Net Volume (per anchor):</p>
@@ -306,12 +239,12 @@
           <div class="result-block">
             <p class="result-label" data-lang-key="volumeRequiredPerAnchor">Total Volume (per anchor):</p>
             <p id="resultVolume" class="result-value">0.00 mL</p>
-            <p id="fillDepthNote" class="result-note hidden" data-lang-key="fillDepthNote">(Calculated at 2/3 fill depth)</p>
+            <p id="fillDepthNote" class="result-note hidden" data-lang-key="fillDepthNote">(Calculated at 2/3 fill
+              depth)</p>
             <p id="resultWastage" class="result-note">(Includes 45% wastage)</p>
           </div>
         </div>
 
-        <!-- ADDED: Wastage Section -->
         <div id="wastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
           <button id="toggleWastageButton" type="button" class="btn-secondary w-full"
             data-lang-key="customizeWastage">Customize Wastage</button>
@@ -320,25 +253,184 @@
             <label for="wastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage
               Factor</label>
             <div class="flex items-center gap-4">
-              <input type="range" id="wastageSlider" name="wastageSlider" min="10" max="100" value="45"
-                class="flex-1" aria-label="Wastage Factor Slider" style="margin-top: 0;">
+              <input type="range" id="wastageSlider" name="wastageSlider" min="10" max="100" value="45" class="flex-1"
+                aria-label="Wastage Factor Slider" style="margin-top: 0;">
               <div class="form-input-wrapper w-24">
                 <input type="text" inputmode="numeric" id="wastageValue" name="wastageValue"
                   class="form-input w-full text-lg font-bold text-fosroc-red" value="45" min="10">
-                <!-- REMOVED: Span with "%" symbol -->
               </div>
             </div>
           </div>
         </div>
-        <!-- END: Wastage Section -->
-
       </div>
 
-    </div> <!-- End Calculator Page -->
-  </div> <!-- End #pageStorage -->
+    </div>
 
-  <!-- External JavaScript -->
-  <script src="script.js" defer></script>
+    <div id="sealantProductPage" class="page-content">
+      <div class="space-y-6">
+
+        <div>
+          <label class="form-label" data-lang-key="sealantProduct">Select Sealant Product</label>
+          <div class="grid grid-cols-3 gap-3">
+            <button type="button" id="sealantProductPU40" class="btn-select" data-product="Nitoseal PU40">
+              Nitoseal PU40
+            </button>
+            <button type="button" id="sealantProductGG" class="btn-select" data-product="Thioflex 600 GG">
+              Thioflex 600 GG
+            </button>
+            <button type="button" id="sealantProductPG" class="btn-select" data-product="Thioflex 600 PG">
+              Thioflex 600 PG
+            </button>
+          </div>
+        </div>
+
+        <div id="sealantSubstrateSection" class="hidden">
+          <label class="form-label" data-lang-key="sealantSubstrate">Substrate Type</label>
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" id="sealantSubstratePorous" class="btn-select" data-substrate="porous">
+              <span data-lang-key="substratePorous">Porous</span>
+            </button>
+            <button type="button" id="sealantSubstrateNonPorous" class="btn-select" data-substrate="non-porous">
+              <span data-lang-key="substrateNonPorous">Non-Porous</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="sealantDimensionsPage" class="page-content">
+      <div class="space-y-6">
+        <div class="form-input-group">
+          <label id="sealantWidthLabel" for="sealantJointWidth" class="form-label" data-lang-key="jointWidth">Joint
+            Width</label>
+          <div class="flex items-center gap-2">
+            <input type="range" id="sealantJointWidthSlider" name="sealantJointWidthSlider" min="5" max="50" value="5"
+              step="0.5" class="flex-1" aria-label="Joint Width Slider" style="margin-top: 0;">
+            <div class="form-input-wrapper w-20">
+              <input type="text" inputmode="decimal" id="sealantJointWidth" name="sealantJointWidth"
+                class="form-input w-full text-lg font-bold text-fosroc-red" value="5" min="5" max="50">
+            </div>
+            <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="mm">mm</span>
+          </div>
+        </div>
+
+        <div class="form-input-group">
+          <label id="sealantDepthLabel" for="sealantJointDepth" class="form-label" data-lang-key="jointDepth">Joint
+            Depth</label>
+          <div class="flex items-center gap-2">
+            <input type="range" id="sealantJointDepthSlider" name="sealantJointDepthSlider" min="5" max="25"
+              value="5" step="0.5" class="flex-1" aria-label="Joint Depth Slider" style="margin-top: 0;">
+            <div class="form-input-wrapper w-20">
+              <input type="text" inputmode="decimal" id="sealantJointDepth" name="sealantJointDepth"
+                class="form-input w-full text-lg font-bold text-fosroc-red" value="5" min="5" max="25">
+            </div>
+            <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="mm">mm</span>
+            <button type="button" id="sealantLinkToggle" class="btn-toggle-link linked"
+              aria-label="Toggle depth link">
+              <svg id="sealantLinkIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+              <svg id="sealantUnlinkIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244m-7.434-3.084l-1.757 1.757a4.5 4.5 0 006.364 6.364l4.5-4.5a4.5 4.5 0 00-1.242-7.244" />
+              </svg>
+            </button>
+          </div>
+          <div id="sealantGuidanceText" class="form-helper-text mt-2">
+          </div>
+        </div>
+
+        <div class="form-input-group">
+          <label for="sealantJointLength" class="form-label" data-lang-key="totalJointLength">Total Joint
+            Length</label>
+          <div class="flex items-center gap-2">
+            <div class="form-input-wrapper flex-1">
+              <input type="text" inputmode="decimal" id="sealantJointLength" name="sealantJointLength"
+                class="form-input" placeholder="e.g., 100" required>
+            </div>
+            <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="m">m</span>
+          </div>
+        </div>
+
+        <div id="sealantDimErrorArea" class="error-message hidden"></div>
+      </div>
+    </div>
+
+    <div id="sealantResultPage" class="page-content">
+      <div id="sealantTotalResultArea" class="mt-0 pt-0 space-y-4">
+        <h2 class="criteria-section-title" data-lang-key="results">Results</h2>
+
+        <div class="result-block">
+          <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
+          <p id="sealantTotalVolume" class="result-value">0.00 L</p>
+          <p id="sealantWastageNote" class="result-note" data-lang-key="wastageNote">(15% wastage)</p>
+        </div>
+
+        <div class="result-block">
+          <p id="sealantPackagesLabel" class="result-label text-center" data-lang-key="packagesNeeded">Packages
+            Needed:</p>
+          <div id="sealantPackagesResultValue" class="text-2xl font-bold text-fosroc-red mt-1">
+          </div>
+        </div>
+      </div>
+
+      <div id="sealantCriteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+        <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
+
+        <div class="space-y-4">
+          <div>
+            <label class="form-label" data-lang-key="sealantProduct">Product</label>
+            <p id="sealantDisplayProduct" class="form-display"></p>
+          </div>
+          <div id="sealantDisplaySubstrateContainer" class="hidden">
+            <label class="form-label" data-lang-key="sealantSubstrate">Substrate</label>
+            <p id="sealantDisplaySubstrate" class="form-display"></p>
+          </div>
+          <div>
+            <label class="form-label" data-lang-key="jointWidth">Width</label>
+            <p id="sealantDisplayWidth" class="form-display"></p>
+          </div>
+          <div>
+            <label class="form-label" data-lang-key="jointDepth">Depth</label>
+            <p id="sealantDisplayDepth" class="form-display"></p>
+          </div>
+          <div>
+            <label class="form-label" data-lang-key="totalJointLength">Length</label>
+            <p id="sealantDisplayLength" class="form-display"></p>
+          </div>
+        </div>
+
+        <button id="sealantEditCriteriaButton" type="button" class="btn-secondary w-full"
+          data-lang-key="sealantEditCriteria">Edit Criteria</button>
+      </div>
+
+      <div id="sealantWastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+        <button id="sealantToggleWastageButton" type="button" class="btn-secondary w-full"
+          data-lang-key="customizeWastage">Customize Wastage</button>
+
+        <div id="sealantWastageCustomizationSection" class="form-input-group pt-4 hidden">
+          <label for="sealantWastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage
+            Factor</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="sealantWastageSlider" name="sealantWastageSlider" min="10" max="100" value="15"
+              class="flex-1" aria-label="Wastage Factor Slider" style="margin-top: 0;">
+            <div class="form-input-wrapper w-24">
+              <input type="text" inputmode="numeric" id="sealantWastageValue" name="sealantWastageValue"
+                class="form-input w-full text-lg font-bold text-fosroc-red" value="15" min="10">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
 </body>
 
 </html>
