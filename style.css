@@ -1,34 +1,26 @@
 :root {
   --fosroc-red: #E4002B;
-  --page-bg: #FDEBD0;
-  /* User's Beige */
+  --page-bg: #FDEBD0; /* User's Beige */
   --content-bg: #FFFFFF;
   --text-primary: #1F1F1F;
   --text-secondary: #5E5E5E;
-  --ui-radius: 28px;
-  /* One UI large radius */
+  --ui-radius: 28px; /* One UI large radius */
   --btn-radius: 16px;
-  /* Rounded-2xl */
   --input-radius: 12px;
-  /* Rounded-xl */
   --page-padding: 1.5rem;
-  /* 24px */
 }
 
 /* Base */
 body {
   font-family: 'Cairo', sans-serif;
-  background-color: #FDEBD0;
-  /* Dark background */
+  background-color: var(--page-bg);
   color: var(--text-primary);
-  /* Prevents pull-to-refresh, essential for app feel */
   overscroll-behavior-y: contain;
 }
 
 /* Main App Container */
 .app-container {
   max-width: 520px;
-  /* Slightly wider than max-w-lg */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -37,11 +29,10 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Top Bar (for Back Button) */
+/* Top Bar */
 .app-top-bar {
   padding: 0.75rem var(--page-padding);
   height: 60px;
-  /* Fixed height for back button area */
   display: flex;
   align-items: center;
   background-color: var(--page-bg);
@@ -55,186 +46,145 @@ body {
   height: 44px;
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
-  /* MODIFIED: Glow/Pop */
 }
 
 .back-button:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transform: scale(1.05);
-  /* MODIFIED: Glow/Pop */
 }
 
 .back-button:active {
   background-color: rgba(0, 0, 0, 0.1);
   transform: scale(0.95);
-  /* MODIFIED: Glow/Pop */
 }
 
 .back-button svg {
   color: var(--text-primary);
-  /* REVERTED */
 }
 
-/* 1. One UI Viewing Area */
+/* Viewing Area */
 .app-viewing-area {
   padding: 0.5rem var(--page-padding) 1.5rem;
   min-height: 120px;
-  /* Give it space */
   background-color: var(--page-bg);
 }
 
 .app-viewing-area h1 {
   font-size: 2.5rem;
-  /* 40px */
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
-  /* REVERTED */
 }
 
 .app-viewing-area p {
   font-size: 1.125rem;
-  /* 18px */
   color: var(--text-secondary);
-  /* REVERTED */
   margin-top: 0.25rem;
 }
 
 .app-viewing-area img {
   max-height: 64px;
-  /* 16 */
   margin-bottom: 1rem;
-  /* Remove centering margin: auto; */
 }
 
-/* 2. One UI Interaction Area */
+/* Interaction Area */
 .app-interaction-area {
   flex: 1;
-  /* This makes it grow to fill space */
   background-color: var(--content-bg);
   border-top-left-radius: var(--ui-radius);
   border-top-right-radius: var(--ui-radius);
   padding: var(--page-padding);
   overflow-y: auto;
-  /* Content scrolls, not the page */
 }
 
-/* 3. One UI Bottom Action Bar */
+/* Bottom Action Bar */
 .app-bottom-bar {
   position: sticky;
   bottom: 0;
   background-color: var(--content-bg);
   padding: 1rem var(--page-padding) 1.5rem;
-  /* Extra bottom padding for home bar */
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
   border-top: 1px solid #EEE;
   z-index: 10;
 }
 
-/* Primary Button (Contained Button) */
+/* Buttons */
 .btn-primary {
   display: block;
   width: 100%;
   padding: 0.875rem 1rem;
-  /* py-3.5 px-4 */
   background-color: var(--fosroc-red);
   color: white;
   font-size: 1rem;
-  /* 16px */
   font-weight: 700;
-  /* bold */
   border-radius: var(--btn-radius);
   box-shadow: 0 0 0 0 rgba(228, 0, 43, 0.7);
-  /* ADDED: Glow/Pop */
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
 }
 
 .btn-primary:hover {
   background-color: #c00024;
-  /* Darker red */
   transform: scale(1.03);
-  /* ADDED: Glow/Pop */
   box-shadow: 0 0 20px 5px rgba(228, 0, 43, 0.4);
-  /* ADDED: Glow/Pop */
 }
 
 .btn-primary:active {
   transform: scale(0.98);
-  /* ADDED: Glow/Pop */
 }
 
-/* Secondary Button (for Start Over) */
 .btn-secondary {
   display: block;
   width: 100%;
   padding: 0.875rem 1rem;
-  background-color: #6B7280;
-  /* gray-500 */
+  background-color: #182534; /* UPDATED COLOR */
   color: white;
   font-size: 1rem;
   font-weight: 700;
   border-radius: var(--btn-radius);
-  box-shadow: 0 0 0 0 rgba(107, 114, 128, 0.7);
-  /* ADDED: Glow/Pop */
+  box-shadow: 0 0 0 0 rgba(24, 37, 52, 0.7); /* UPDATED SHADOW COLOR */
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
 }
 
 .btn-secondary:hover {
-  background-color: #4B5563;
-  /* gray-600 */
+  background-color: #0D131B; /* UPDATED HOVER COLOR */
   transform: scale(1.03);
-  /* ADDED: Glow/Pop */
-  box-shadow: 0 0 20px 5px rgba(107, 114, 128, 0.4);
-  /* ADDED: Glow/Pop */
+  box-shadow: 0 0 20px 5px rgba(24, 37, 52, 0.4); /* UPDATED SHADOW COLOR */
 }
 
 .btn-secondary:active {
   transform: scale(0.98);
-  /* ADDED: Glow/Pop */
 }
 
-/* Language Button (Also a Contained Button) */
 .btn-language {
   padding: 1rem 1.25rem;
   font-size: 1.125rem;
-  /* text-xl */
   font-weight: 700;
   border: 2px solid var(--fosroc-red);
   color: var(--fosroc-red);
   border-radius: var(--btn-radius);
   box-shadow: 0 0 0 0 rgba(228, 0, 43, 0.7);
-  /* ADDED: Glow/Pop */
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
 }
 
 .btn-language:hover {
   background-color: var(--fosroc-red);
   color: white;
   transform: translateY(-2px) scale(1.03);
-  /* MODIFIED: Glow/Pop */
   box-shadow: 0 0 20px 5px rgba(228, 0, 43, 0.4);
-  /* ADDED: Glow/Pop */
 }
 
 .btn-language:active {
   transform: translateY(0) scale(0.98);
-  /* ADDED: Glow/Pop */
 }
 
-/* Hub "Focus Block" Button */
 .btn-focus-block {
   display: block;
   width: 100%;
   padding: 1.25rem 1.5rem;
-  /* p-5 p-6 */
   background-color: var(--content-bg);
   border-radius: var(--btn-radius);
   text-align: left;
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
   border: 1px solid #EEE;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -245,84 +195,59 @@ body {
 
 .btn-focus-block:hover {
   transform: translateY(-4px) scale(1.02);
-  /* MODIFIED: Glow/Pop */
   box-shadow: 0 8px 25px 5px rgba(228, 0, 43, 0.1);
-  /* MODIFIED: Glow/Pop */
   border-color: var(--fosroc-red);
 }
 
 .btn-focus-block:active {
   transform: translateY(0) scale(0.98);
-  /* ADDED: Glow/Pop */
 }
 
 .btn-focus-block h2 {
   font-size: 1.25rem;
-  /* text-xl */
   font-weight: 700;
   color: var(--fosroc-red);
 }
 
 .btn-focus-block p {
   font-size: 0.875rem;
-  /* text-sm */
   color: var(--text-secondary);
   margin-top: 0.25rem;
 }
 
-/* Selection Buttons (Rebar, Substrate) */
+/* Selection Buttons */
 .btn-select {
   display: block;
   padding: 0.75rem 1rem;
-  /* py-3 px-4 */
   border: 2px solid #E5E7EB;
-  /* gray-200 */
   border-radius: var(--input-radius);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
   text-align: center;
   font-weight: 500;
   box-shadow: 0 0 0 0 rgba(228, 0, 43, 0.7);
-  /* ADDED: Glow/Pop */
 }
 
 .btn-select:hover {
   transform: scale(1.03);
-  /* ADDED: Glow/Pop */
   box-shadow: 0 0 20px 5px rgba(228, 0, 43, 0.2);
-  /* ADDED: Glow/Pop */
   border-color: #FCA5A5;
-  /* red-300 */
 }
 
 .btn-select:active {
   transform: scale(0.98);
-  /* ADDED: Glow/Pop */
 }
 
-/* Style for hidden radio's :checked + label */
 input[type="radio"]:checked+.btn-select,
-.btn-select.selected
-/* Class for non-radio buttons */
-  {
+.btn-select.selected {
   border-color: var(--fosroc-red);
   background-color: var(--fosroc-red);
   color: white;
   font-weight: 700;
   box-shadow: 0 4px 15px 2px rgba(228, 0, 43, 0.2);
-  /* MODIFIED: Glow/Pop */
 }
 
-/* Hide the actual radio button */
-input[type="radio"].hidden-radio {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Product Selection Button */
+/* Product Button */
 .btn-product {
   flex: 1;
   padding: 1rem;
@@ -330,27 +255,21 @@ input[type="radio"].hidden-radio {
   border-radius: var(--btn-radius);
   text-align: center;
   box-shadow: 0 0 0 0 rgba(228, 0, 43, 0.7);
-  /* ADDED: Glow/Pop */
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
 }
 
 .btn-product:hover {
   transform: translateY(-2px) scale(1.03);
-  /* MODIFIED: Glow/Pop */
   box-shadow: 0 4px 20px 5px rgba(228, 0, 43, 0.15);
-  /* MODIFIED: Glow/Pop */
   border-color: var(--fosroc-red);
 }
 
 .btn-product:active {
   transform: translateY(0) scale(0.98);
-  /* ADDED: Glow/Pop */
 }
 
 .btn-product img {
   height: 140px;
-  /* h-36 */
   margin: 0 auto;
   object-fit: contain;
   margin-bottom: 1rem;
@@ -359,7 +278,6 @@ input[type="radio"].hidden-radio {
 
 .btn-product h2 {
   font-size: 1.125rem;
-  /* text-lg */
   font-weight: 700;
   color: var(--fosroc-red);
 }
@@ -369,7 +287,7 @@ input[type="radio"].hidden-radio {
   color: var(--text-primary);
 }
 
-/* Input Fields */
+/* Inputs */
 .form-input-group {
   margin-bottom: 1.5rem;
 }
@@ -377,9 +295,7 @@ input[type="radio"].hidden-radio {
 .form-label {
   display: block;
   font-size: 0.875rem;
-  /* text-sm */
   font-weight: 600;
-  /* semibold */
   color: var(--fosroc-red);
   margin-bottom: 0.5rem;
 }
@@ -391,12 +307,9 @@ input[type="radio"].hidden-radio {
 .form-input {
   width: 100%;
   background-color: #F3F4F6;
-  /* gray-100 */
   border: 2px solid #F3F4F6;
-  /* gray-100 */
   border-radius: var(--input-radius);
   padding: 0.875rem 1rem;
-  /* py-3.5 px-4 */
   font-size: 1rem;
   color: var(--text-primary);
 }
@@ -411,20 +324,18 @@ input[type="radio"].hidden-radio {
 .form-display {
   width: 100%;
   background-color: #F3F4F6;
-  /* gray-100 */
   border: 2px solid #F3F4F6;
   border-radius: var(--input-radius);
   padding: 0.875rem 1rem;
   font-size: 1rem;
   color: var(--fosroc-red);
-  /* Branded color */
   font-weight: 700;
-  /* Bold */
 }
 
 .form-input-adornment {
   position: absolute;
-  inset-y: 0;
+  top: 0;
+  bottom: 0;
   right: 0;
   display: flex;
   align-items: center;
@@ -443,44 +354,31 @@ input[type="radio"].hidden-radio {
   text-align: right;
 }
 
-.text-fosroc-red {
-  color: var(--fosroc-red);
-}
-
 /* Slider */
 input[type=range] {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 10px;
   background: #ddd;
   outline: none;
   border-radius: 5px;
   margin-top: 1rem;
-  /* Ensures margin even if not in a space-y container */
-}
-
-/* Specific margin-top override for the new rebar slider */
-#rebarCountSlider {
-  margin-top: 0;
 }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 26px;
-  /* Larger thumb */
   height: 26px;
   background: var(--fosroc-red);
   cursor: pointer;
   border-radius: 50%;
   border: 3px solid white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(228, 0, 43, 0.7);
-  /* MODIFIED: Glow/Pop */
   transition: all 0.3s ease-in-out;
-  /* MODIFIED: Glow/Pop */
 }
 
-/* ADDED: Glow/Pop for Slider */
 input[type=range]::-webkit-slider-thumb:hover {
   transform: scale(1.15);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 20px 5px rgba(228, 0, 43, 0.4);
@@ -490,13 +388,11 @@ input[type=range]::-webkit-slider-thumb:active {
   transform: scale(0.95);
 }
 
-
-/* Result Display */
+/* Results */
 .result-block {
   text-align: center;
   padding: 1rem;
   background-color: #F9FAFB;
-  /* gray-50 */
   border-radius: var(--btn-radius);
   margin-bottom: 1rem;
 }
@@ -509,20 +405,15 @@ input[type=range]::-webkit-slider-thumb:active {
 
 .result-value {
   font-size: 2.25rem;
-  /* text-4xl */
   font-weight: 800;
-  /* extrabold */
   color: var(--fosroc-red);
   line-height: 1;
 }
 
 .result-value-small {
   font-size: 1.5rem;
-  /* text-2xl */
   font-weight: 700;
-  /* bold */
   color: #374151;
-  /* gray-700 */
 }
 
 .result-note {
@@ -531,36 +422,25 @@ input[type=range]::-webkit-slider-thumb:active {
   margin-top: 0.25rem;
 }
 
-/* Sealant Package Result (specific) */
-#sealantPackagesResultValue {
-  text-align: center;
-  margin-top: 0.25rem;
-}
-
-#sealantPackagesResultValue b {
+#sealantPackagesResultValue b,
+#cartridgeResultValue b,
+#pileTopBagsNeeded b,
+#sealantPrimerResultValue b,
+#pileTopEPTResultValue b {
   font-size: 1.875rem;
-  /* text-3xl */
   font-weight: 700;
   color: var(--fosroc-red);
 }
 
-#cartridgeResultValue b {
-  font-size: 1.875rem;
-  /* text-3xl */
-  font-weight: 700;
-  color: var(--fosroc-red);
-}
-
-/* Error Text */
+/* Errors */
 .error-message {
   margin-top: 0.5rem;
   text-align: center;
   color: #DC2626;
-  /* red-600 */
   font-weight: 500;
 }
 
-/* Criteria Section */
+/* Criteria */
 .criteria-section-title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -569,34 +449,26 @@ input[type=range]::-webkit-slider-thumb:active {
   text-align: center;
 }
 
-/* MODIFIED: Wastage Input Alignment */
 #wastageValue,
-#sealantWastageValue {
+#sealantWastageValue,
+#pileTopWastageValue {
   text-align: center;
-  /* padding-right: 2.5rem; */
-  /* REMOVED */
 }
 
 [dir="rtl"] #wastageValue,
-[dir="rtl"] #sealantWastageValue {
+[dir="rtl"] #sealantWastageValue,
+[dir="rtl"] #pileTopWastageValue {
   text-align: right;
-  /* padding-right: 1rem; */
-  /* REMOVED */
-  /* padding-left: 2.5rem; */
-  /* REMOVED */
 }
 
-/* Helper text for ASTM guidance */
+/* Form Helper */
 .form-helper-text {
   font-size: 0.875rem;
-  /* text-sm */
   color: var(--text-secondary);
   padding: 0.75rem 1rem;
   background-color: #F9FAFB;
-  /* gray-50 */
   border-radius: var(--input-radius);
   border: 1px solid #F3F4F6;
-  /* gray-100 */
   line-height: 1.4;
 }
 
@@ -605,32 +477,134 @@ input[type=range]::-webkit-slider-thumb:active {
   color: var(--text-primary);
 }
 
-/* NEW: Toggle button for linking sealant inputs */
+/* Toggle Button */
 .btn-toggle-link {
   padding: 0.5rem;
-  /* p-2 */
   width: 44px;
   height: 44px;
   border-radius: 9999px;
-  /* rounded-full */
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #F3F4F6;
-  /* gray-100 */
   color: #6B7280;
-  /* gray-500 */
   transition: all 0.2s ease-in-out;
 }
 
 .btn-toggle-link:hover {
   background-color: #E5E7EB;
-  /* gray-200 */
 }
 
 .btn-toggle-link.linked {
   background-color: #FEE2E2;
-  /* red-100 */
   color: var(--fosroc-red);
-  /* red-600 */
+}
+
+/* MODAL STYLES (NEW) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  font-family: 'Cairo', sans-serif;
+}
+
+.modal-card {
+  background: #FFFFFF;
+  padding: 1.5rem;
+  border-radius: 16px;
+  max-width: 90%;
+  text-align: center;
+  margin: 1rem;
+  width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* NEW: CUSTOM CHECKBOX STYLES */
+input[type="checkbox"] {
+  /* Hide the default checkbox */
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+input[type="checkbox"] + .form-label {
+  position: relative;
+  padding-left: 32px; /* Space for custom checkbox */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px; /* Match the box size */
+  color: var(--text-primary);
+}
+
+/* RTL support for checkbox */
+[dir="rtl"] input[type="checkbox"] + .form-label {
+  padding-left: 0;
+  padding-right: 32px;
+}
+
+input[type="checkbox"] + .form-label::before {
+  /* The custom box */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #F3F4F6;
+  border: 2px solid #E5E7EB;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* RTL support for box */
+[dir="rtl"] input[type="checkbox"] + .form-label::before {
+  left: auto;
+  right: 0;
+}
+
+input[type="checkbox"]:focus + .form-label::before {
+  /* Focus state */
+  box-shadow: 0 0 0 3px rgba(228, 0, 43, 0.2);
+  border-color: var(--fosroc-red);
+}
+
+input[type="checkbox"]:checked + .form-label::before {
+  /* Checked state - box */
+  background-color: var(--fosroc-red);
+  border-color: var(--fosroc-red);
+}
+
+input[type="checkbox"] + .form-label::after {
+  /* The checkmark */
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-60%) rotate(45deg);
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* RTL support for checkmark */
+[dir="rtl"] input[type="checkbox"] + .form-label::after {
+  left: auto;
+  right: 7px;
+}
+
+input[type="checkbox"]:checked + .form-label::after {
+  /* Checked state - checkmark */
+  opacity: 1;
 }

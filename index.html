@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>FOSROC IQ Hub</title>
 
-  <link rel="icon" type="image/png" href="/a/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="a/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/a/favicon.svg" />
-  <link rel="shortcut icon" href="/a/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/a/apple-touch-icon.png" />
+  <link rel="shortcut" href="a/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="a/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="IQ HUB" />
-  <link rel="manifest" href="/a/site.webmanifest" />
-
+  
+  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#E4002B">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,8 +25,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- We assume style.css is present in the same directory -->
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body class="antialiased">
@@ -34,6 +34,7 @@
   <div class="app-container">
 
     <header class="app-top-bar">
+      <!-- Back button, dynamically shown by JS -->
       <button id="headerBackButton" class="back-button hidden">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
           class="w-6 h-6 text-gray-700">
@@ -42,35 +43,45 @@
       </button>
     </header>
 
+    <!-- Header area for logo, title, and step -->
     <div id="viewingArea" class="app-viewing-area">
-      <img id="headerLogo" src="https://www.fosroc.com.au/themes/custom/fosroc/logo.svg" alt="Fosroc Logo"
+      <img id="headerLogo" src="svg/logo.svg" alt="Fosroc Logo"
         class="hidden">
       <h1 id="headerTitle" class="hidden"></h1>
       <p id="headerStep" class="hidden"></p>
     </div>
 
+    <!-- Main content area where pages are loaded -->
     <main id="pageContainer" class="app-interaction-area">
       </main>
 
-    <div id="bottomActionBar" class="app-bottom-bar hidden">
-
-      <button id="continueToCalcButton" class="btn-primary action-button hidden"
-        data-lang-key="continueToCalculator">Continue</button>
+    <!-- Bottom action bar for navigation buttons -->
+    <footer id="bottomActionBar" class="app-bottom-bar hidden">
+      <!-- Anchor Calculator Buttons (JS toggles visibility) -->
+      <button id="anchorCalculateButton" class="btn-primary action-button hidden"
+        data-lang-key="sealantCalculate">Calculate</button>
       <button type="button" id="anchorStartOver" class="btn-secondary action-button hidden"
         data-lang-key="startOver">Start Over</button>
 
-      <button type="button" id="sealantContinueToDims" class="btn-primary action-button hidden"
-        data-lang-key="continueToCalculator">Continue</button>
+      <!-- Sealant Calculator Buttons (JS toggles visibility) -->
       <button type="button" id="sealantCalculateButton" class="btn-primary action-button hidden"
         data-lang-key="sealantCalculate">Calculate</button>
       <button type="button" id="sealantStartOver" class="btn-secondary action-button hidden"
         data-lang-key="sealantStartOver">Start Over</button>
 
-    </div>
+      <!-- Pile Top Calculator Buttons (JS toggles visibility) -->
+      <button type="button" id="pileTopCalculateButton" class="btn-primary action-button hidden"
+        data-lang-key="pileTopCalculate">Calculate</button>
+      <button type="button" id="pileTopStartOver" class="btn-secondary action-button hidden"
+        data-lang-key="sealantStartOver">Start Over</button>
+    </footer>
 
   </div>
 
+  <!-- Storage for all page templates -->
   <div id="pageStorage" class="hidden">
+    
+    <!-- Language Selection Page -->
     <div id="languagePage" class="page-content">
       <p class="text-gray-600 mt-2 text-center" data-lang-key="selectLanguage">Please Select Your Language</p>
       <div class="space-y-4 mt-6">
@@ -79,6 +90,7 @@
       </div>
     </div>
 
+    <!-- Main Hub / Tool Selection Page -->
     <div id="hubPage" class="page-content">
       <div class="space-y-4">
         <button id="selectAnchorCalculator" class="btn-focus-block">
@@ -89,29 +101,39 @@
           <h2 data-lang-key="sealantCalculator">Sealant Volume Calculator</h2>
           <p data-lang-key="sealantDescription">Estimate joint sealant requirements.</p>
         </button>
+        <button id="selectPileTopCalculator" class="btn-focus-block">
+          <h2 data-lang-key="pileTopCalculator">Pile Top Calculator</h2>
+          <p data-lang-key="pileTopDescription">Estimate Supercast PC for pile leveling.</p>
+        </button>
         <button id="selectCatalogue" class="btn-focus-block">
           <h2 data-lang-key="materialCatalogue">Material Catalogue</h2>
           <p data-lang-key="comingSoon">Coming Soon</p>
         </button>
+        <button id="installAppButton" class="btn-focus-block hidden">
+          <h2 data-lang-key="installApp">Install App</h2>
+          <p data-lang-key="installAppDescription">Add IQ Hub to your home screen.</p>
+        </button>
       </div>
     </div>
 
+    <!-- Catalogue Page (Coming Soon) -->
     <div id="cataloguePage" class="page-content">
       <div class="text-center">
         <p class="text-gray-500 mt-2" data-lang-key="featureInProgress">This feature is currently under development.</p>
       </div>
     </div>
 
+    <!-- Anchor Calc: Product Selection -->
     <div id="selectionPage" class="page-content">
       <div class="flex flex-col md:flex-row gap-6">
         <button type="button" id="selectE77" class="btn-product" data-product="E77">
-          <img src="https://www.resapol.com/wp-content/uploads/2022/09/Lokfix-E77-Product-Image.png" alt="Lokfix E77"
+          <img src="img/E77.webp" alt="Lokfix E77"
             onerror="this.src='https://placehold.co/200x200/E4002B/white?text=Lokfix+E77'">
           <h2 data-lang-key="structural">Structural</h2>
           <p>Lokfix E77</p>
         </button>
         <button type="button" id="selectE55" class="btn-product" data-product="E55">
-          <img src="https://www.buildershoponline.co.uk/image/data/fosroc/fosroc-lokfix-e55s.png" alt="Lokfix E55"
+          <img src="img/E55.webp" alt="Lokfix E55"
             onerror="this.src='https://placehold.co/200x200/E4002B/white?text=Lokfix+E55'">
           <h2 data-lang-key="nonStructural">Non-Structural</h2>
           <p>Lokfix E55</p>
@@ -119,28 +141,32 @@
       </div>
     </div>
 
+    <!-- Anchor Calc: Rebar Selection -->
     <div id="rebarPage" class="page-content">
-      <div id="rebarGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-        <button type="button" class="btn-select rebar-btn" data-value="8" data-product-e77="true">Ø8</button>
-        <button type="button" class="btn-select rebar-btn" data-value="10" data-product-e77="true">Ø10</button>
-        <button type="button" class="btn-select rebar-btn" data-value="12" data-product-e77="true">Ø12</button>
-        <button type="button" class="btn-select rebar-btn" data-value="14" data-product-e77="true">Ø14</button>
-        <button type="button" class="btn-select rebar-btn" data-value="16" data-product-e77="true">Ø16</button>
-        <button type="button" class="btn-select rebar-btn" data-value="20" data-product-e77="true">Ø20</button>
-        <button type="button" class="btn-select rebar-btn" data-value="24" data-product-e77="true">Ø24</button>
-        <button type="button" class="btn-select rebar-btn" data-value="25" data-product-e77="true">Ø25</button>
-        <button type="button" class="btn-select rebar-btn" data-value="28" data-product-e77="true">Ø28</button>
-        <button type="button" class="btn-select rebar-btn" data-value="32" data-product-e77="true">Ø32</button>
+      <!-- UPDATED: Changed to grid-cols-2 -->
+      <div id="rebarGrid" class="grid grid-cols-2 gap-3">
+        <button type="button" class="btn-select rebar-btn" data-value="8">Ø8</button>
+        <button type="button" class="btn-select rebar-btn" data-value="10">Ø10</button>
+        <button type="button" class="btn-select rebar-btn" data-value="12">Ø12</button>
+        <button type="button" class="btn-select rebar-btn" data-value="14">Ø14</button>
+        <button type="button" class="btn-select rebar-btn" data-value="16">Ø16</button>
+        <button type="button" class="btn-select rebar-btn" data-value="20">Ø20</button>
+        <button type="button" class="btn-select rebar-btn" data-value="24">Ø24</button>
+        <button type="button" class="btn-select rebar-btn" data-value="25">Ø25</button>
+        <button type="button" class="btn-select rebar-btn" data-value="28">Ø28</button>
+        <button type="button" class="btn-select rebar-btn" data-value="32">Ø32</button>
       </div>
     </div>
 
+    <!-- Anchor Calc: Hole Selection -->
     <div id="holePage" class="page-content">
       <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="holeRebarDisplay"
           class="font-bold text-fosroc-red"></span></p>
-      <div id="holeGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-      </div>
+      <!-- UPDATED: Changed to grid-cols-2 -->
+      <div id="holeGrid" class="grid grid-cols-2 gap-3"></div>
     </div>
 
+    <!-- Anchor Calc: Depth Selection -->
     <div id="depthPage" class="page-content">
       <p class="text-center text-gray-600 mb-4" data-lang-key="rebar">Rebar: <span id="depthRebarDisplay"
           class="font-bold text-fosroc-red"></span></p>
@@ -148,13 +174,11 @@
         <div class="text-center">
           <label for="depthValue" class="form-label" data-lang-key="selectedDepth">Selected Depth:</label>
           <div class="flex justify-center items-center space-x-2">
-            <input type="text" inputmode="decimal" id="depthValue" name="depthValue"
-              class="form-input w-32 text-center text-lg font-bold text-fosroc-red">
+            <input type="text" inputmode="decimal" id="depthValue" class="form-input w-32 text-center text-lg font-bold text-fosroc-red">
             <span class="text-lg font-bold text-gray-700" data-lang-key="mm">mm</span>
           </div>
         </div>
-        <input type="range" id="depthSlider" name="depthSlider" min="0" max="1000" value="100"
-          aria-label="Embedment Depth Slider">
+        <input type="range" id="depthSlider" min="0" max="1000" value="100">
         <div class="text-center text-sm text-gray-500">
           <span data-lang-key="min">Min</span>: <span id="depthMinLabel">0</span> <span data-lang-key="mm">mm</span> |
           <span data-lang-key="max">Max</span>: <span id="depthMaxLabel">1000</span> <span data-lang-key="mm">mm</span>
@@ -162,225 +186,217 @@
       </div>
     </div>
 
+    <!-- Anchor Calc: Results Page -->
     <div id="calculatorPage" class="page-content">
       <form id="calculatorForm" class="space-y-6">
-        <input type="hidden" id="rodDiameter" name="rodDiameter">
-        <input type="hidden" id="selectedProduct" name="selectedProduct">
+        <input type="hidden" id="rodDiameter">
+        <input type="hidden" id="selectedProduct">
 
+        <!-- These inputs are hidden but used by JS to store values -->
         <div id="inputHoleDiameterDiv" class="form-input-group hidden">
           <label for="holeDiameter" class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
           <div class="form-input-wrapper">
-            <input type="number" id="holeDiameter" name="holeDiameter" class="form-input"
-              data-lang-placeholder="holeDiameterPlaceholder" placeholder="e.g., 16" required>
+            <input type="number" id="holeDiameter" class="form-input" data-lang-placeholder="holeDiameterPlaceholder" placeholder="e.g., 16">
             <span class="form-input-adornment" data-lang-key="mm">mm</span>
           </div>
         </div>
         <div id="inputHoleDepthDiv" class="form-input-group hidden">
-          <label for="holeDepth" class="form-label" data-lang-key="embedmentDepthHoleDepth">Embedment Depth / Hole
-            Depth</label>
+          <label for="holeDepth" class="form-label" data-lang-key="embedmentDepthHoleDepth">Embedment Depth / Hole Depth</label>
           <div class="form-input-wrapper">
-            <input type="number" id="holeDepth" name="holeDepth" class="form-input"
-              data-lang-placeholder="holeDepthPlaceholder" placeholder="e.g., 125" required>
+            <input type="number" id="holeDepth" class="form-input" data-lang-placeholder="holeDepthPlaceholder" placeholder="e.g., 125">
             <span class="form-input-adornment" data-lang-key="mm">mm</span>
           </div>
         </div>
-      </form>
+      
+        <div id="errorArea" class="error-message hidden"></div>
 
-      <div id="errorArea" class="error-message hidden"></div>
-
-      <div id="rebarCountSection" class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
-        <label for="rebarCountValue" class="form-label text-center" data-lang-key="numberOfRebars">Number of
-          Rebars</label>
-        <div class="flex items-center gap-4">
-          <input type="range" id="rebarCountSlider" name="rebarCountSlider" min="1" max="500" value="1" class="flex-1"
-            aria-label="Number of Rebars Slider">
-          <input type="text" inputmode="numeric" id="rebarCountValue" name="rebarCountValue"
-            class="form-input w-20 text-center text-lg font-bold text-fosroc-red" value="1" min="1">
-        </div>
-      </div>
-      <div id="totalResultArea" class="mt-0 pt-0 space-y-4 hidden">
-        <h2 id="resultsTitle" class="criteria-section-title" data-lang-key="results">Results</h2>
-
-        <div class="result-block">
-          <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
-          <p id="totalVolumeDisplay" class="result-value">0.00 mL</p>
-        </div>
-
-        <div id="totalCartridgeInfo" class="mt-4 text-center">
-          <p class="result-label" data-lang-key="totalCartridgesNeeded">Total Cartridges Needed:</p>
-          <div id="cartridgeResultValue" class="text-2xl font-bold text-fosroc-red mt-1">
-          </div>
-        </div>
-      </div>
-
-      <div id="criteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4 hidden">
-        <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
-
-        <div id="displayE77Inputs" class="space-y-4">
-          <div>
-            <label class="form-label" data-lang-key="rebar">Rebar</label>
-            <p id="selectedRebarDisplay" class="form-display">Ø12</p>
-          </div>
-          <div>
-            <label class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
-            <p id="displayHoleDiameter" class="form-display">0 mm</p>
-          </div>
-          <div>
-            <label class="form-label" data-lang-key="embedmentDepth">Embedment Depth</label>
-            <p id="displayHoleDepth" class="form-display">0 mm</p>
+        <!-- Number of Rebars Slider -->
+        <div id="rebarCountSection" class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
+          <label for="rebarCountValue" class="form-label text-center" data-lang-key="numberOfRebars">Number of Rebars</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="rebarCountSlider" min="1" max="500" value="1" class="flex-1" style="margin-top: 0;">
+            <input type="text" inputmode="numeric" id="rebarCountValue" class="form-input w-20 text-center text-lg font-bold text-fosroc-red" value="1">
           </div>
         </div>
 
-        <div id="resultArea" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+        <!-- Total Results -->
+        <div id="totalResultArea" class="mt-0 pt-0 space-y-4 hidden">
+          <h2 id="resultsTitle" class="criteria-section-title" data-lang-key="results">Results</h2>
           <div class="result-block">
-            <p class="result-label" data-lang-key="netVolumePerAnchor">Net Volume (per anchor):</p>
-            <p id="netVolumeDisplay" class="result-value-small">0.00 mL</p>
+            <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
+            <p id="totalVolumeDisplay" class="result-value">0.00 mL</p>
           </div>
-          <div class="result-block">
-            <p class="result-label" data-lang-key="volumeRequiredPerAnchor">Total Volume (per anchor):</p>
-            <p id="resultVolume" class="result-value">0.00 mL</p>
-            <p id="fillDepthNote" class="result-note hidden" data-lang-key="fillDepthNote">(Calculated at 2/3 fill
-              depth)</p>
-            <p id="resultWastage" class="result-note">(Includes 45% wastage)</p>
+          <div id="totalCartridgeInfo" class="mt-4 text-center">
+            <p class="result-label" data-lang-key="totalCartridgesNeeded">Total Cartridges Needed:</p>
+            <div id="cartridgeResultValue" class="text-2xl font-bold text-fosroc-red mt-1"></div>
           </div>
         </div>
 
-        <div id="wastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
-          <button id="toggleWastageButton" type="button" class="btn-secondary w-full"
-            data-lang-key="customizeWastage">Customize Wastage</button>
+        <!-- Criteria and Per-Anchor Results -->
+        <div id="criteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4 hidden">
+          <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
+          <div id="displayE77Inputs" class="space-y-4">
+            <div>
+              <label class="form-label" data-lang-key="rebar">Rebar</label>
+              <p id="selectedRebarDisplay" class="form-display">Ø12</p>
+            </div>
+            <div>
+              <label class="form-label" data-lang-key="holeDiameter">Hole Diameter</label>
+              <p id="displayHoleDiameter" class="form-display">0 mm</p>
+            </div>
+            <div>
+              <label class="form-label" data-lang-key="embedmentDepth">Embedment Depth</label>
+              <p id="displayHoleDepth" class="form-display">0 mm</p>
+            </div>
+          </div>
+          <div id="resultArea" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+            <div class="result-block">
+              <p class="result-label" data-lang-key="netVolumePerAnchor">Net Volume (per anchor):</p>
+              <p id="netVolumeDisplay" class="result-value-small">0.00 mL</p>
+            </div>
+            <div class="result-block">
+              <p class="result-label" data-lang-key="volumeRequiredPerAnchor">Total Volume (per anchor):</p>
+              <p id="resultVolume" class="result-value">0.00 mL</p>
+              <p id="fillDepthNote" class="result-note hidden" data-lang-key="fillDepthNote">(Calculated at 2/3 fill depth)</p>
+              <p id="resultWastage" class="result-note">(Includes 45% wastage)</p>
+            </div>
+          </div>
 
-          <div id="wastageCustomizationSection" class="form-input-group pt-4 hidden">
-            <label for="wastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage
-              Factor</label>
-            <div class="flex items-center gap-4">
-              <input type="range" id="wastageSlider" name="wastageSlider" min="10" max="100" value="45" class="flex-1"
-                aria-label="Wastage Factor Slider" style="margin-top: 0;">
-              <div class="form-input-wrapper w-24">
-                <input type="text" inputmode="numeric" id="wastageValue" name="wastageValue"
-                  class="form-input w-full text-lg font-bold text-fosroc-red" value="45" min="10">
+          <!-- Wastage Customization -->
+          <div id="wastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+            <button id="toggleWastageButton" type="button" class="btn-secondary w-full" data-lang-key="customizeWastage">Customize Wastage</button>
+            <div id="wastageCustomizationSection" class="form-input-group pt-4 hidden">
+              <label for="wastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage Factor</label>
+              <div class="flex items-center gap-4">
+                <input type="range" id="wastageSlider" min="10" max="100" value="45" class="flex-1" style="margin-top: 0;">
+                <div class="form-input-wrapper w-24">
+                  <input type="text" inputmode="numeric" id="wastageValue" class="form-input w-full text-lg font-bold text-fosroc-red" value="45">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
+      </form>
     </div>
 
+    <!-- Sealant Calc: Product Selection -->
     <div id="sealantProductPage" class="page-content">
       <div class="space-y-6">
-
         <div>
           <label class="form-label" data-lang-key="sealantProduct">Select Sealant Product</label>
-          <div class="grid grid-cols-3 gap-3">
-            <button type="button" id="sealantProductPU40" class="btn-select" data-product="Nitoseal PU40">
-              Nitoseal PU40
+          <div class="grid grid-cols-2 gap-6">
+            <button type="button" id="sealantProductPU40CS" class="btn-product" data-product="Nitoseal PU40-CS">
+              <img src="img/pu40-cs.png" alt="Nitoseal PU40-CS" onerror="this.src='https://placehold.co/200x200/E4002B/white?text=PU40-CS'">
+              <p>Nitoseal PU40-CS</p>
             </button>
-            <button type="button" id="sealantProductGG" class="btn-select" data-product="Thioflex 600 GG">
-              Thioflex 600 GG
+            <button type="button" id="sealantProductGG" class="btn-product" data-product="Thioflex 600 GG">
+              <img src="img/thioflex-gg.png" alt="Thioflex 600 GG" onerror="this.src='https://placehold.co/200x200/E4002B/white?text=Thioflex+GG'">
+              <p>Thioflex 600 GG</p>
             </button>
-            <button type="button" id="sealantProductPG" class="btn-select" data-product="Thioflex 600 PG">
-              Thioflex 600 PG
-            </button>
-          </div>
-        </div>
-
-        <div id="sealantSubstrateSection" class="hidden">
-          <label class="form-label" data-lang-key="sealantSubstrate">Substrate Type</label>
-          <div class="grid grid-cols-2 gap-3">
-            <button type="button" id="sealantSubstratePorous" class="btn-select" data-substrate="porous">
-              <span data-lang-key="substratePorous">Porous</span>
-            </button>
-            <button type="button" id="sealantSubstrateNonPorous" class="btn-select" data-substrate="non-porous">
-              <span data-lang-key="substrateNonPorous">Non-Porous</span>
+            <button type="button" id="sealantProductPG" class="btn-product" data-product="Thioflex 600 PG">
+              <img src="img/thioflex-pg.png" alt="Thioflex 600 PG" onerror="this.src='https://placehold.co/200x200/E4002B/white?text=Thioflex+PG'">
+              <p>Thioflex 600 PG</p>
             </button>
           </div>
         </div>
-
       </div>
     </div>
 
+    <!-- Sealant Calc: Substrate Selection -->
+    <div id="sealantSubstratePage" class="page-content">
+      <div class="space-y-6">
+        <div>
+          <label class="form-label" data-lang-key="sealantSubstrate">Substrate Type</label>
+          <div class="flex flex-col md:flex-row gap-6">
+            <button type="button" id="sealantSelectSubstratePorous" class="btn-product" data-substrate="porous">
+              <img src="img/Porous.webp" alt="Porous Substrate (e.g., Concrete)">
+              <h2 data-lang-key="substratePorous">Porous</h2>
+            </button>
+            <button type="button" id="sealantSelectSubstrateNonPorous" class="btn-product" data-substrate="non-porous">
+              <img src="img/Non-Porous.webp" alt="Non-Porous Substrate (e.g., Metal, Glass)">
+              <h2 data-lang-key="substrateNonPorous">Non-Porous</h2>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sealant Calc: Dimensions Page -->
     <div id="sealantDimensionsPage" class="page-content">
       <div class="space-y-6">
         <div class="form-input-group">
-          <label id="sealantWidthLabel" for="sealantJointWidth" class="form-label" data-lang-key="jointWidth">Joint
-            Width</label>
+          <label id="sealantWidthLabel" for="sealantJointWidth" class="form-label" data-lang-key="jointWidth">Joint Width</label>
           <div class="flex items-center gap-2">
-            <input type="range" id="sealantJointWidthSlider" name="sealantJointWidthSlider" min="5" max="50" value="5"
-              step="0.5" class="flex-1" aria-label="Joint Width Slider" style="margin-top: 0;">
+            <input type="range" id="sealantJointWidthSlider" min="5" max="50" value="5" step="0.5" class="flex-1" style="margin-top: 0;">
             <div class="form-input-wrapper w-20">
-              <input type="text" inputmode="decimal" id="sealantJointWidth" name="sealantJointWidth"
-                class="form-input w-full text-lg font-bold text-fosroc-red" value="5" min="5" max="50">
+              <input type="text" inputmode="decimal" id="sealantJointWidth" class="form-input w-full text-lg font-bold text-fosroc-red" value="5">
             </div>
             <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="mm">mm</span>
           </div>
         </div>
 
         <div class="form-input-group">
-          <label id="sealantDepthLabel" for="sealantJointDepth" class="form-label" data-lang-key="jointDepth">Joint
-            Depth</label>
+          <label id="sealantDepthLabel" for="sealantJointDepth" class="form-label" data-lang-key="jointDepth">Joint Depth</label>
           <div class="flex items-center gap-2">
-            <input type="range" id="sealantJointDepthSlider" name="sealantJointDepthSlider" min="5" max="25"
-              value="5" step="0.5" class="flex-1" aria-label="Joint Depth Slider" style="margin-top: 0;">
+            <input type="range" id="sealantJointDepthSlider" min="5" max="25" value="5" step="0.5" class="flex-1" style="margin-top: 0;">
             <div class="form-input-wrapper w-20">
-              <input type="text" inputmode="decimal" id="sealantJointDepth" name="sealantJointDepth"
-                class="form-input w-full text-lg font-bold text-fosroc-red" value="5" min="5" max="25">
+              <input type="text" inputmode="decimal" id="sealantJointDepth" class="form-input w-full text-lg font-bold text-fosroc-red" value="5">
             </div>
             <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="mm">mm</span>
-            <button type="button" id="sealantLinkToggle" class="btn-toggle-link linked"
-              aria-label="Toggle depth link">
-              <svg id="sealantLinkIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+            <button type="button" id="sealantLinkToggle" class="btn-toggle-link linked">
+              <svg id="sealantLinkIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
               </svg>
-              <svg id="sealantUnlinkIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244m-7.434-3.084l-1.757 1.757a4.5 4.5 0 006.364 6.364l4.5-4.5a4.5 4.5 0 00-1.242-7.244" />
+              <svg id="sealantUnlinkIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244m-7.434-3.084l-1.757 1.757a4.5 4.5 0 006.364 6.364l4.5-4.5a4.5 4.5 0 00-1.242-7.244" />
               </svg>
             </button>
           </div>
-          <div id="sealantGuidanceText" class="form-helper-text mt-2">
-          </div>
+          <div id="sealantGuidanceText" class="form-helper-text mt-2"></div>
         </div>
 
         <div class="form-input-group">
-          <label for="sealantJointLength" class="form-label" data-lang-key="totalJointLength">Total Joint
-            Length</label>
+          <label for="sealantJointLength" class="form-label" data-lang-key="totalJointLength">Total Joint Length</label>
           <div class="flex items-center gap-2">
             <div class="form-input-wrapper flex-1">
-              <input type="text" inputmode="decimal" id="sealantJointLength" name="sealantJointLength"
-                class="form-input" placeholder="e.g., 100" required>
+              <input type="text" inputmode="decimal" id="sealantJointLength" class="form-input" placeholder="e.g., 100">
             </div>
             <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="m">m</span>
           </div>
         </div>
 
+        <div class="form-input-group flex items-center gap-3">
+          <input type="checkbox" id="sealantIncludePrimer" class="h-5 w-5 rounded border-gray-300 text-fosroc-red focus:ring-fosroc-red">
+          <label for="sealantIncludePrimer" class="form-label mb-0" data-lang-key="includePrimer">Calculate Primer 7E</label>
+        </div>
+        
         <div id="sealantDimErrorArea" class="error-message hidden"></div>
       </div>
     </div>
 
+    <!-- Sealant Calc: Results Page -->
     <div id="sealantResultPage" class="page-content">
       <div id="sealantTotalResultArea" class="mt-0 pt-0 space-y-4">
         <h2 class="criteria-section-title" data-lang-key="results">Results</h2>
-
         <div class="result-block">
           <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
           <p id="sealantTotalVolume" class="result-value">0.00 L</p>
           <p id="sealantWastageNote" class="result-note" data-lang-key="wastageNote">(15% wastage)</p>
         </div>
-
         <div class="result-block">
-          <p id="sealantPackagesLabel" class="result-label text-center" data-lang-key="packagesNeeded">Packages
-            Needed:</p>
-          <div id="sealantPackagesResultValue" class="text-2xl font-bold text-fosroc-red mt-1">
-          </div>
+          <p id="sealantPackagesLabel" class="result-label text-center" data-lang-key="packagesNeeded">Packages Needed:</p>
+          <div id="sealantPackagesResultValue" class="text-2xl font-bold text-fosroc-red mt-1"></div>
         </div>
-      </div>
+        
+        <div id="sealantPrimerResultBlock" class="result-block hidden">
+          <p class="result-label" data-lang-key="primerNeeded">Primer 7E Needed:</p>
+          <div id="sealantPrimerResultValue" class="text-2xl font-bold text-fosroc-red mt-1"></div>
+          <p id="sealantPrimerAreaNote" class="result-note"></p>
+        </div>
 
+      </div>
       <div id="sealantCriteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
         <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
-
         <div class="space-y-4">
           <div>
             <label class="form-label" data-lang-key="sealantProduct">Product</label>
@@ -403,34 +419,189 @@
             <p id="sealantDisplayLength" class="form-display"></p>
           </div>
         </div>
-
-        <button id="sealantEditCriteriaButton" type="button" class="btn-secondary w-full"
-          data-lang-key="sealantEditCriteria">Edit Criteria</button>
-      </div>
-
+        </div>
       <div id="sealantWastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
-        <button id="sealantToggleWastageButton" type="button" class="btn-secondary w-full"
-          data-lang-key="customizeWastage">Customize Wastage</button>
-
+        <button id="sealantToggleWastageButton" type="button" class="btn-secondary w-full" data-lang-key="customizeWastage">Customize Wastage</button>
         <div id="sealantWastageCustomizationSection" class="form-input-group pt-4 hidden">
-          <label for="sealantWastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage
-            Factor</label>
+          <label for="sealantWastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage Factor</label>
           <div class="flex items-center gap-4">
-            <input type="range" id="sealantWastageSlider" name="sealantWastageSlider" min="10" max="100" value="15"
-              class="flex-1" aria-label="Wastage Factor Slider" style="margin-top: 0;">
+            <input type="range" id="sealantWastageSlider" min="10" max="100" value="15" class="flex-1" style="margin-top: 0;">
             <div class="form-input-wrapper w-24">
-              <input type="text" inputmode="numeric" id="sealantWastageValue" name="sealantWastageValue"
-                class="form-input w-full text-lg font-bold text-fosroc-red" value="15" min="10">
+              <input type="text" inputmode="numeric" id="sealantWastageValue" class="form-input w-full text-lg font-bold text-fosroc-red" value="15">
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Pile Top Calc: Shape Selection -->
+    <div id="pileTopShapePage" class="page-content">
+      <div class="space-y-6">
+        <div>
+          <label class="form-label" data-lang-key="selectPileType">Select Pile Type</label>
+          <!-- UPDATED: Changed flex layout to grid-cols-2 -->
+          <div class="grid grid-cols-2 gap-6">
+            <button type="button" id="pileTypeRound" class="btn-product" data-shape="round">
+              <img src="svg/round-pile.svg" alt="Round Pile">
+              <h2 data-lang-key="pileTypeRound">Round</h2>
+            </button>
+            <button type="button" id="pileTypeSquare" class="btn-product" data-shape="square">
+              <img src="svg/square-pile.svg" alt="Square Pile">
+              <h2 data-lang-key="pileTypeSquare">Square</h2>
+            </button>
+            <button type="button" id="pileTypeRectangular" class="btn-product" data-shape="rectangular">
+              <img src="svg/reg-pile.svg" alt="Rectangular Pile">
+              <h2 data-lang-key="pileTypeRectangular">Rectangular</h2>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pile Top Calc: Dimensions Page -->
+    <div id="pileTopDimsPage" class="page-content">
+      <div class="space-y-6">
+        <div id="pileDimsRound" class="form-input-group hidden">
+          <label for="pileDiameterGrid" class="form-label" data-lang-key="pileDiameterMm">Pile Diameter (mm)</label>
+          <!-- UPDATED: Changed grid from 3/4 cols to 2 cols -->
+          <div id="pileDiameterGrid" class="grid grid-cols-2 gap-3"></div>
+          <div id="pileDiameterCustom" class="flex items-center gap-2 mt-4 hidden">
+            <input type="text" inputmode="decimal" id="pileDiameter" class="form-input flex-1" data-lang-placeholder="pileDiameterPlaceholder">
+          </div>
+        </div>
+
+        <div id="pileDimsSquare" class="form-input-group hidden">
+          <label for="pileSideGrid" class="form-label" data-lang-key="pileSideLengthMm">Side Length (mm)</label>
+          <!-- UPDATED: Changed grid from 3/4 cols to 2 cols -->
+          <div id="pileSideGrid" class="grid grid-cols-2 gap-3"></div>
+          <div id="pileSideCustom" class="flex items-center gap-2 mt-4 hidden">
+            <input type="text" inputmode="decimal" id="pileSide" class="form-input flex-1" data-lang-placeholder="pileSidePlaceholder">
+          </div>
+        </div>
+
+        <div id="pileDimsRectangular" class="form-input-group hidden">
+          <div class="form-input-group">
+            <label for="pileLength" class="form-label" data-lang-key="pileLengthMm">Length (mm)</label>
+            <input type="text" inputmode="decimal" id="pileLength" class="form-input" data-lang-placeholder="pileLengthPlaceholder">
+          </div>
+          <div class="form-input-group">
+            <label for="pileWidth" class="form-label" data-lang-key="pileWidthMm">Width (mm)</label>
+            <input type="text" inputmode="decimal" id="pileWidth" class="form-input" data-lang-placeholder="pileWidthPlaceholder">
+          </div>
+        </div>
+
+        <div class="form-input-group">
+          <label for="pileThickness" class="form-label" data-lang-key="pileThickness">Casting Thickness (mm)</label>
+          <input type="text" inputmode="decimal" id="pileThickness" class="form-input" placeholder="e.g., 50">
+          <p class="form-helper-text mt-2" data-lang-key="pileThicknessNote">Max 250mm per layer</p>
+        </div>
+
+        <div class="form-input-group flex items-center gap-3">
+          <input type="checkbox" id="pileIncludeEPT" class="h-5 w-5 rounded border-gray-300 text-fosroc-red focus:ring-fosroc-red">
+          <label for="pileIncludeEPT" class="form-label mb-0" data-lang-key="includeEPT">Calculate Supercast EPT</label>
+        </div>
+
+        <div id="pileTopEPTSection" class="form-input-group hidden space-y-4">
+          <div id="pileTopEPTPackSizeSection" class="form-input-group hidden">
+            <label class="form-label" data-lang-key="eptPackSize">Select EPT Pack Size</label>
+            <div class="grid grid-cols-2 gap-3">
+              <button type="button" id="eptPack20L" class="btn-select ept-pack-btn selected" data-value="20">20 L</button>
+              <button type="button" id="eptPack46L" class="btn-select ept-pack-btn" data-value="46">46 L</button>
+            </div>
+          </div>
+          <label for="pileEPTThickness" class="form-label" data-lang-key="eptThickness">EPT Thickness (15-50 mm)</label>
+          <div class="flex items-center gap-2">
+            <input type="range" id="pileEPTThicknessSlider" min="15" max="50" value="25" step="1" class="flex-1" style="margin-top: 0;"> <div class="form-input-wrapper w-20">
+              <input type="text" inputmode="decimal" id="pileEPTThickness" class="form-input w-full text-lg font-bold text-fosroc-red" value="25"> </div>
+            <span class="text-gray-700 font-medium w-8 text-left" data-lang-key="mm">mm</span>
+          </div>
+        </div>
+        <div id="pileTopErrorArea" class="error-message hidden"></div>
+      </div>
+    </div>
+
+    <!-- Pile Top Calc: Results Page -->
+    <div id="pileTopResultPage" class="page-content">
+      <div class="space-y-6">
+        
+        <div id="pileCountSection" class="form-input-group pt-4 pb-6 mb-6 border-b border-gray-200">
+          <label for="pileCountValue" class="form-label text-center" data-lang-key="numberOfPiles">Number of Piles</label>
+          <div class="flex items-center gap-4">
+            <input type="range" id="pileCountSlider" min="1" max="500" value="1" class="flex-1" style="margin-top: 0;">
+            <input type="text" inputmode="numeric" id="pileCountValue" class="form-input w-20 text-center text-lg font-bold text-fosroc-red" value="1">
+          </div>
+        </div>
+
+        <div id="pileTopResultArea" class="mt-0 pt-0 space-y-4">
+          <h2 class="criteria-section-title" data-lang-key="results">Results</h2>
+          <div class="result-block">
+            <p class="result-label" data-lang-key="totalVolumeRequired">Total Volume Required:</p>
+            <p id="pileTopTotalVolume" class="result-value">0.00 L</p>
+            <p id="pileTopWastageNote" class="result-note" data-lang-key="wastageNote">(10% wastage)</p> </div>
+          <div class="result-block">
+            <p class="result-label" data-lang-key="bagsNeeded">Bags Needed (Supercast PC):</p>
+            <p id="pileTopBagsNeeded" class="text-2xl font-bold text-fosroc-red mt-1"></p>
+          </div>
+
+          <div id="pileTopEPTResultBlock" class="result-block hidden">
+            <p class="result-label" data-lang-key="eptSetsNeeded">Supercast EPT Packs Needed:</p> <p id="pileTopEPTResultValue" class="text-2xl font-bold text-fosroc-red mt-1"></p>
+            <p class="result-note">
+              (<span data-lang-key="eptVolumeNotePrefix">Total Volume:</span> <span id="pileTopEPTVolume">0.00</span> <span data-lang-key="litres">Litres</span>)
+            </p>
+          </div>
+          <div class="result-block">
+             <p class="result-label" data-lang-key="recommendation">Recommendation:</p>
+             <p id="pileTopRecommendation" class="form-display text-center"></p>
+          </div>
+        </div>
+
+        <div id="pileTopCriteriaSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+          <h2 class="criteria-section-title" data-lang-key="criteriaForResults">Criteria for Result</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="form-label" data-lang-key="selectPileType">Pile Shape</label>
+              <p id="pileTopDisplayShape" class="form-display"></p>
+            </div>
+            <div id="pileTopDisplayDims" class="space-y-4">
+              </div>
+            <div>
+              <label class="form-label" data-lang-key="pileThickness">Thickness</label>
+              <p id="pileTopDisplayThickness" class="form-display"></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="pileTopWastageSection" class="mt-6 pt-6 border-t border-gray-200 space-y-4">
+          <button id="pileTopToggleWastageButton" type="button" class="btn-secondary w-full" data-lang-key="customizeWastage">Customize Wastage</button>
+          <div id="pileTopWastageCustomizationSection" class="form-input-group pt-4 hidden">
+            <label for="pileTopWastageValue" class="form-label text-center" data-lang-key="wastageFactor">Wastage Factor</label>
+            <div class="flex items-center gap-4">
+              <input type="range" id="pileTopWastageSlider" min="0" max="100" value="10" class="flex-1" style="margin-top: 0;"> <div class="form-input-wrapper w-24">
+                <input type="text" inputmode="numeric" id="pileTopWastageValue" class="form-input w-full text-lg font-bold text-fosroc-red" value="10"> </div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+    </div>
+
+  </div> 
+  
+  <!-- Modal for Samsung PWA install instructions -->
+  <div id="samsungInstallModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <h2 class="text-xl font-bold text-gray-900 mb-4" data-lang-key="installOnSamsung">Install on Samsung</h2>
+      <p class="text-gray-600 mb-6 leading-relaxed">
+        <span data-lang-key="samsungInstallPart1">To install, tap the Menu button</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="inline-block mx-1 text-gray-800">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
+        <span data-lang-key="samsungInstallPart2">and then select 'Add to Home Screen'.</span>
+      </p>
+      <button id="closeSamsungModalButton" class="btn-primary w-full" data-lang-key="close">Close</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
-
 </body>
-
 </html>

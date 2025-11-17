@@ -1,0 +1,35 @@
+{
+  "name": "FOSROC IQ Hub",
+  "short_name": "IQ Hub",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FDEBD0",
+  "theme_color": "#E4002B",
+  "icons": [
+    {
+      "src": "/a/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/a/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/a/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/a/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/a/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
